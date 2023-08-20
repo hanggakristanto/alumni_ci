@@ -108,7 +108,7 @@ class Rekapitulasi extends CI_Controller
         }
         $allowed = array('xls', 'xlsx');
         $file = $_FILES['files']['tmp_name'];
-        $ext = pathinfo($file, PATHINFO_EXTENSION);
+        $ext = pathinfo($_FILES['files']['name'], PATHINFO_EXTENSION);
         if (!in_array($ext, $allowed)) {
             $this->session->set_flashdata('message', 'hanya menerima file xls atau xlsx');
             redirect(site_url('rekapitulasi'));
