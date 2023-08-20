@@ -17,7 +17,7 @@
 									<form method="post" enctype="multipart/form-data">
 										<input type="file" id="files" name="files" multiple="multiple" /> <br>
 										<p>
-											<input type="submit" value="Upload Files" class="btn btn-lg btn-primary" />
+											<input type="submit" value="Import Data" class="btn btn-lg btn-primary" />
 										</p>
 									</form>
 								</div>

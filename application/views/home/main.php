@@ -66,9 +66,6 @@
                     </div>
                 </div>
                 
-                
-                
-                
             </div>
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -90,7 +87,7 @@
                             </tr>
                             <tr>
                                 <td>Nim</td>
-                                <td>Mexico</td>
+                                <!-- <td><?php echo humanize($is_user->nisn);?></td> -->
                             </tr>
                             <tr>
                                 <td>TTL</td>
@@ -117,7 +114,7 @@
                                 <td>Mexico</td>
                             </tr>
                             <tr>
-                                <td>Ijazah</td>
+                                <td>No Ijazah</td>
                                 <td>Mexico</td>
                             </tr>
                             </table>

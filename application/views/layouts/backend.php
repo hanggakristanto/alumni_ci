@@ -153,6 +153,9 @@ $uri_string = $this->uri->uri_string();
                     <li <?php echo $segment1 == 'profil' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('profil', '<i class="material-icons">person</i><span>Profil Pengguna</span>'); ?>
                     </li>
+                    <li <?php echo $segment1 == 'akreditasi' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('akreditasi', '<i class="material-icons">person</i><span>SK Akreditasi</span>'); ?>
+                    </li>
                     <li <?php echo $segment1 == 'lowongan' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('lowongan', '<i class="material-icons">work</i><span>Lowongan</span>'); ?>
                     </li>
@@ -177,6 +180,14 @@ $uri_string = $this->uri->uri_string();
                     <li <?php echo $segment1 == 'lowongan' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('lowongan/list_admin', '<i class="material-icons">work</i><span>Lowongan</span>'); ?>
                     </li>
+
+                    <li <?php echo $segment1 == 'akreditasi' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('akreditasi', '<i class="material-icons">work</i><span>SK Akreditasi</span>'); ?>
+                    </li>
+                    <li <?php echo $segment1 == 'lowongan' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('lowongan/list_admin', '<i class="material-icons">work</i><span>Buku Wisuda</span>'); ?>
+                    </li>
+
                     <li <?php echo $segment1 == 'event' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('event/list_admin', '<i class="material-icons">event</i><span>event</span>'); ?>
                     </li>
