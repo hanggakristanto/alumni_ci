@@ -9,7 +9,7 @@ class Rekapitulasi extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper('ImportExcel');
+        $this->load->helper('import_excel');
         $this->load->model(array('Rekapitulasi_model' => 'rekapitulasi'));
     }
 
