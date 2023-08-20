@@ -120,7 +120,7 @@ class Rekapitulasi extends CI_Controller
         $success = 0;
         $header = array_merge(['first_name', 'last_name', 'email'], $header);
         $custom_validation = [
-            'email' => 'required|email'
+            'email' => 'trim|required|valid_email'
         ];
         foreach ($header as $k_hdr => $hdr) {
             $rules[] = [
