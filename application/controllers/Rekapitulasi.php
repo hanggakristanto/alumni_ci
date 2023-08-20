@@ -45,6 +45,7 @@ class Rekapitulasi extends CI_Controller
              <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
              <!-- Custom Js -->
              <script src="' . base_url('assets/backend') . '/js/pages/tables/jquery-datatable.js"></script>
+             <script src="' . base_url('assets/backend') . '/js/rekapitulasi.js"></script>
              ';
             //end partial
             $this->data['get_all'] = $this->rekapitulasi->get_all();
@@ -100,20 +101,34 @@ class Rekapitulasi extends CI_Controller
     public function proses()
     {
         $this->load->library('ion_auth');
+        if (empty($_FILES['files']['tmp_name'])) {
+            $this->session->set_flashdata('message', 'silahkan upload file excel');
+            redirect(site_url('rekapitulasi'));
+            exit;
+        }
+        $allowed = array('xls', 'xlsx');
         $file = $_FILES['files']['tmp_name'];
+        $ext = pathinfo($file, PATHINFO_EXTENSION);
+        if (!in_array($ext, $allowed)) {
+            $this->session->set_flashdata('message', 'hanya menerima file xls atau xlsx');
+            redirect(site_url('rekapitulasi'));
+        }
         $header = $this->rekapitulasi->fillable;
         array_shift($header);
         $rules = [];
         $errors = [];
         $success = 0;
+        $header = array_merge(['first_name', 'last_name', 'email'], $header);
+        $custom_validation = [
+            'email' => 'required|email'
+        ];
         foreach ($header as $k_hdr => $hdr) {
             $rules[] = [
                 'field' => $hdr,
                 'label' => $hdr,
-                'rules' => 'required',
+                'rules' => $custom_validation[$hdr] ?? 'required',
             ];
         }
-        $header = array_merge(['first_name', 'last_name', 'email'], $header);
         $result = ImportExcel::import($file, $header);
         foreach ($result->toArray() as $key => $value) {
             if ($key == 1) continue;
@@ -132,6 +147,7 @@ class Rekapitulasi extends CI_Controller
             $create_user = $this->ion_auth->register($email, $password, $email, $addtional_data, [2]);
             if ($create_user !== FALSE) {
                 $value['id_user'] = $create_user;
+                $value['tanggal_lahir'] = ImportExcel::formatDate($value['tanggal_lahir']);
                 $this->rekapitulasi->insert_profil($value);
                 $success++;
             }
@@ -142,6 +158,41 @@ class Rekapitulasi extends CI_Controller
             $this->session->set_flashdata('message', 'success import ' . $success . ' data');
         }
         redirect(site_url('rekapitulasi'));
+    }
+
+    public function download_template()
+    {
+        $this->load->helper('download');
+        $file = __DIR__ . '/../../temp/template_import.xlsx';
+        force_download($file, NULL);
+    }
+
+    public function upload_picture()
+    {
+        if ($this->input->method() === 'post') {
+            // the user id contain dot, so we must remove it
+            $id = $this->input->post('id');
+            $file_name = md5($id);
+            $config['upload_path']          = FCPATH . '/assets/backend/avatar/';
+            $config['allowed_types']        = 'gif|jpg|jpeg|png';
+            $config['file_name']            = $file_name;
+            $config['overwrite']            = true;
+            $config['max_size']             = 2048; // 2MB
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('picture')) {
+                $data['error'] = $this->upload->display_errors();
+                $this->session->set_flashdata('message', $this->upload->display_errors());
+                redirect(site_url('rekapitulasi'));
+            } else {
+                $uploaded_data = $this->upload->data();
+                if ($this->rekapitulasi->update_picture($id, $uploaded_data['file_name'])) {
+                    $this->session->set_flashdata('message', 'Avatar updated!');
+                    redirect(site_url('rekapitulasi'));
+                }
+            }
+        }
     }
 }
 

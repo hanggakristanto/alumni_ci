@@ -69,4 +69,9 @@ class ImportExcel
     {
         return $this->collection;
     }
+
+    public static function formatDate($value, $format = 'YYYY-MM-DD')
+    {
+        return PHPExcel_Style_NumberFormat::toFormattedString($value, $format);
+    }
 }
