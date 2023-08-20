@@ -9,6 +9,7 @@ class Rekapitulasi extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('ImportExcel');
         $this->load->model(array('Rekapitulasi_model' => 'rekapitulasi'));
     }
 
@@ -21,24 +22,29 @@ class Rekapitulasi extends CI_Controller
             // redirect them to the home page because they must be an administrator to view this
             return show_error('Anda tidak punya akses di halaman ini');
         } else {
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            $this->data['csrf'] = $csrf;
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
             $this->data['is_user'] = $this->ion_auth->user()->row();
             //partial datatable
             $this->data['_partial_css'] = '<!-- JQuery DataTable Css -->
-             <link href="'.base_url('assets/backend').'/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">';
+             <link href="' . base_url('assets/backend') . '/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">';
             $this->data['_partial_js'] = '<!-- Jquery DataTable Plugin Js -->
-             <script src="'.base_url('assets/backend').'/plugins/jquery-datatable/jquery.dataTables.js"></script>
-             <script src="'.base_url('assets/backend').'/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-             <script src="'.base_url('assets/backend').'/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-             <script src="'.base_url('assets/backend').'/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-             <script src="'.base_url('assets/backend').'/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-             <script src="'.base_url('assets/backend').'/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-             <script src="'.base_url('assets/backend').'/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-             <script src="'.base_url('assets/backend').'/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-             <script src="'.base_url('assets/backend').'/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+             <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/jquery.dataTables.js"></script>
+             <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+             <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+             <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+             <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+             <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+             <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+             <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+             <script src="' . base_url('assets/backend') . '/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
              <!-- Custom Js -->
-             <script src="'.base_url('assets/backend').'/js/pages/tables/jquery-datatable.js"></script>
+             <script src="' . base_url('assets/backend') . '/js/pages/tables/jquery-datatable.js"></script>
              ';
             //end partial
             $this->data['get_all'] = $this->rekapitulasi->get_all();
@@ -85,10 +91,57 @@ class Rekapitulasi extends CI_Controller
                 $this->data['_view'] = 'rekapitulasi/rekapitulasi_read';
                 $this->template->_render_page('layouts/backend', $this->data);
             } else {
-                $this->session->set_flashdata('message','Data tidak ditemukan');
+                $this->session->set_flashdata('message', 'Data tidak ditemukan');
                 redirect(site_url('rekapitulasi'));
             }
         }
+    }
+
+    public function proses()
+    {
+        $this->load->library('ion_auth');
+        $file = $_FILES['files']['tmp_name'];
+        $header = $this->rekapitulasi->fillable;
+        array_shift($header);
+        $rules = [];
+        $errors = [];
+        $success = 0;
+        foreach ($header as $k_hdr => $hdr) {
+            $rules[] = [
+                'field' => $hdr,
+                'label' => $hdr,
+                'rules' => 'required',
+            ];
+        }
+        $header = array_merge(['first_name', 'last_name', 'email'], $header);
+        $result = ImportExcel::import($file, $header);
+        foreach ($result->toArray() as $key => $value) {
+            if ($key == 1) continue;
+            $this->form_validation->set_data($value);
+            $this->form_validation->set_rules($rules);
+            if ($this->form_validation->run() === FALSE) {
+                $errors[$key] = $this->form_validation->error_string();
+                continue;
+            }
+            $email = $value['email'];
+            $password = $value['nisn'];
+            $addtional_data = [
+                'first_name' => $value['first_name'],
+                'last_name' => $value['last_name'],
+            ];
+            $create_user = $this->ion_auth->register($email, $password, $email, $addtional_data, [2]);
+            if ($create_user !== FALSE) {
+                $value['id_user'] = $create_user;
+                $this->rekapitulasi->insert_profil($value);
+                $success++;
+            }
+        }
+        if (!empty($errors)) {
+            $this->session->set_flashdata('message', 'data row ' . implode(',', array_keys($errors)) . ' tidak berhasil di import');
+        } else {
+            $this->session->set_flashdata('message', 'success import ' . $success . ' data');
+        }
+        redirect(site_url('rekapitulasi'));
     }
 }
 
