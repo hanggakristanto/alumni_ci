@@ -150,11 +150,14 @@ $uri_string = $this->uri->uri_string();
                     </li>
                     <?php if ($this->ion_auth->in_group('members')) {
     ?>
-                    <li <?php echo $segment1 == 'profil' ? 'class="active"' : ''; ?>>
+                    <!-- <li <?php echo $segment1 == 'profil' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('profil', '<i class="material-icons">person</i><span>Profil Pengguna</span>'); ?>
+                    </li> -->
+                    <li <?php echo $segment1 == 'eventa' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('eventa', '<i class="material-icons">person</i><span>SK Akreditasi</span>'); ?>
                     </li>
-                    <li <?php echo $segment1 == 'akreditasi' ? 'class="active"' : ''; ?>>
-                        <?php echo anchor('akreditasi', '<i class="material-icons">person</i><span>SK Akreditasi</span>'); ?>
+                    <li <?php echo $segment1 == 'events' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('events', '<i class="material-icons">person</i><span>Buku Alumni</span>'); ?>
                     </li>
                     <li <?php echo $segment1 == 'lowongan' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('lowongan', '<i class="material-icons">work</i><span>Lowongan</span>'); ?>
@@ -180,16 +183,15 @@ $uri_string = $this->uri->uri_string();
                     <li <?php echo $segment1 == 'lowongan' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('lowongan/list_admin', '<i class="material-icons">work</i><span>Lowongan</span>'); ?>
                     </li>
-
-                    <li <?php echo $segment1 == 'akreditasi' ? 'class="active"' : ''; ?>>
-                        <?php echo anchor('akreditasi', '<i class="material-icons">work</i><span>SK Akreditasi</span>'); ?>
-                    </li>
-                    <li <?php echo $segment1 == 'lowongan' ? 'class="active"' : ''; ?>>
-                        <?php echo anchor('lowongan/list_admin', '<i class="material-icons">work</i><span>Buku Wisuda</span>'); ?>
+                    <li <?php echo $segment1 == 'events' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('events/list_admin', '<i class="material-icons">work</i><span>Buku Wisuda</span>'); ?>
                     </li>
 
                     <li <?php echo $segment1 == 'event' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('event/list_admin', '<i class="material-icons">event</i><span>event</span>'); ?>
+                    </li>
+                    <li <?php echo $segment1 == 'eventa' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('eventa/list_admin', '<i class="material-icons">event</i><span>SK Akreditasi</span>'); ?>
                     </li>
                     <li <?php echo $segment1 == 'testimoni' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('testimoni/list_admin', '<i class="material-icons">record_voice_over</i><span>Testimoni</span>'); ?>

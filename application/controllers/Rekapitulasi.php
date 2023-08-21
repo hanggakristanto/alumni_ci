@@ -108,7 +108,7 @@ class Rekapitulasi extends CI_Controller
         }
         $allowed = array('xls', 'xlsx');
         $file = $_FILES['files']['tmp_name'];
-        $ext = pathinfo($file, PATHINFO_EXTENSION);
+        $ext = pathinfo($_FILES['files']['name'], PATHINFO_EXTENSION);
         if (!in_array($ext, $allowed)) {
             $this->session->set_flashdata('message', 'hanya menerima file xls atau xlsx');
             redirect(site_url('rekapitulasi'));
@@ -120,7 +120,7 @@ class Rekapitulasi extends CI_Controller
         $success = 0;
         $header = array_merge(['first_name', 'last_name', 'email'], $header);
         $custom_validation = [
-            'email' => 'required|email'
+            'email' => 'trim|required|valid_email'
         ];
         foreach ($header as $k_hdr => $hdr) {
             $rules[] = [
@@ -153,6 +153,7 @@ class Rekapitulasi extends CI_Controller
             }
         }
         if (!empty($errors)) {
+            // var_dump($errors); die;
             $this->session->set_flashdata('message', 'data row ' . implode(',', array_keys($errors)) . ' tidak berhasil di import');
         } else {
             $this->session->set_flashdata('message', 'success import ' . $success . ' data');

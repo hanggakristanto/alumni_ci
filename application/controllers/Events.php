@@ -4,39 +4,44 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Ak extends CI_Controller
+class Events extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('Ak_model' => 'akreditasi'));
+        $this->load->model(array('Events_model' => 'events'));
     }
 
     public function index()
     {
-        if (!$this->ion_auth->logged_in() || (!$this->ion_auth->in_group(2))) {
-            redirect('auth', 'refresh');
-        }
-        $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
-        $this->data['_get_akreditasi'] = $this->akreditasi->read_per_month();
-        if(!isset($this->data['_get_akreditasi'])||empty($this->data['_get_akreditasi'])){
-            $this->session->set_flashdata('message','Tidak ada Info Lowongan bulan Ini!');
-        }
-        $this->data['is_user'] = $this->ion_auth->user()->row();
+        if (!$this->ion_auth->logged_in()) {
+            // redirect them to the login page
+            redirect('auth/login', 'refresh');
+        } elseif (!$this->ion_auth->in_group(2)) { // remove this elseif if you want to enable this for non-admins
+            // redirect them to the home page because they must be an administrator to view this
+            return show_error('Anda tidak punya akses di halaman ini');
+        } else {
+            $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+            $this->data['_get_events'] = $this->events->read_per_month();
+            if(!isset($this->data['_get_events'])||empty($this->data['_get_events'])){
+                $this->session->set_flashdata('message','Tidak ada Info Kegiatan bulan Ini!');
+            }
+            $this->data['is_user'] = $this->ion_auth->user()->row();
 
-        $this->data['_view'] = 'ak/ak_list';
-        $this->template->_render_page('layouts/backend', $this->data);
+            $this->data['_view'] = 'events/event_list';
+            $this->template->_render_page('layouts/backend', $this->data);
+        }
     }
 
     public function list_admin()
     {
-       
         if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin())) {
             redirect('auth', 'refresh');
         }
         $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
         $this->data['is_user'] = $this->ion_auth->user()->row();
-        $this->data['_get_akreditasi'] = $this->akreditasi->get_all();
+        $this->data['_get_events'] = $this->events->get_all();
+
         //partial datatable
         $this->data['_partial_css'] = '<!-- JQuery DataTable Css -->
         <link href="'.base_url('assets/backend').'/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">';
@@ -54,39 +59,32 @@ class Ak extends CI_Controller
         <script src="'.base_url('assets/backend').'/js/pages/tables/jquery-datatable.js"></script>
         ';
         //end partial
-        $this->data['_view'] = 'ak/ak_admin_list';
+        $this->data['_view'] = 'events/event_admin_list';
         $this->template->_render_page('layouts/backend', $this->data);
-        
-        
     }
 
     public function read($slug)
     {
-        
         if (!$this->ion_auth->logged_in()) {
             // redirect them to the login page
             redirect('auth/login', 'refresh');
         } else {
             $this->data['is_user'] = $this->ion_auth->user()->row();
 
-            $row = $this->akreditasi->read_slug($slug);
+            $row = $this->event->read_slug($slug);
             if ($row) {
                 $this->data['id'] = $this->form_validation->set_value('id', $row->id);
-                $this->data['nama_perusahaan'] = $this->form_validation->set_value('nama_perusahaan', $row->nama_perusahaan);
-                $this->data['job_title'] = $this->form_validation->set_value('job_title', $row->job_title);
-                $this->data['job_slug'] = $this->form_validation->set_value('job_slug', $row->job_slug);
-                $this->data['deskripsi'] = $this->form_validation->set_value('deskripsi', $row->deskripsi);
+                $this->data['nama_event'] = $this->form_validation->set_value('nama_event', $row->nama_event);
+                $this->data['event_title'] = $this->form_validation->set_value('event_title', $row->event_title);
+                $this->data['event_slug'] = $this->form_validation->set_value('event_slug', $row->event_slug);
                 $this->data['tanggal_posting'] = $this->form_validation->set_value('tanggal_posting', $row->tanggal_posting);
 
-                $this->data['_view'] = 'ak/ak_read';
+                $this->data['title'] = humanize(implode(' | ', array($this->template->set_app_name(), $row->event_title)));
+                $this->data['_view'] = 'event/event_read';
                 $this->template->_render_page('layouts/backend', $this->data);
             } else {
                 $this->session->set_flashdata('message','Data tidak ditemukan');
-                if ($this->ion_auth->is_admin()) {
-                    redirect(site_url('ak/list_admin'));
-                } else {
-                    redirect(site_url('ak'));
-                }
+                redirect(site_url('event'));
             }
         }
     }
@@ -100,37 +98,27 @@ class Ak extends CI_Controller
             $this->data['is_user'] = $this->ion_auth->user()->row();
 
             $this->data['button'] = 'Tambah';
-            $this->data['action'] = site_url('akreditasi/tambah_aksi');
+            $this->data['action'] = site_url('events/tambah_aksi');
             $this->data['id'] = array(
                 'name' => 'id',
                 'type' => 'hidden',
                 'value' => $this->form_validation->set_value('id'),
                 'class' => 'form-control',
-                'required' => 'required',
             );
-            $this->data['nama_perusahaan'] = array(
-                'name' => 'nama_perusahaan',
+            $this->data['nama_event'] = array(
+                'name' => 'nama_event',
                 'type' => 'text',
-                'value' => $this->form_validation->set_value('nama_perusahaan'),
+                'value' => $this->form_validation->set_value('nama_event'),
                 'class' => 'form-control',
-                'required' => 'required',
             );
-            $this->data['job_title'] = array(
-                'name' => 'job_title',
+            $this->data['event_title'] = array(
+                'name' => 'event_title',
                 'type' => 'text',
-                'value' => $this->form_validation->set_value('job_title'),
+                'value' => $this->form_validation->set_value('event_title'),
                 'class' => 'form-control',
-                'required' => 'required',
-            );
-            $this->data['deskripsi'] = array(
-                'name' => 'deskripsi',
-                'type' => 'text',
-                'value' => $this->form_validation->set_value('deskripsi'),
-                'class' => 'form-control',
-                'required' => 'required',
             );
 
-            $this->data['_view'] = 'akreditasi/ak_form';
+            $this->data['_view'] = 'events/event_form';
             $this->template->_render_page('layouts/backend', $this->data);
         }
     }
@@ -143,15 +131,14 @@ class Ak extends CI_Controller
             $this->create();
         } else {
             $data = array(
-            'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
-            'job_title' => $this->input->post('job_title', true),
-            'job_slug' => slug($this->input->post('job_title', true)),
-            'deskripsi' => $this->input->post('deskripsi', true),
+                'nama_event' => $this->input->post('nama_event', true),
+                'event_title' => $this->input->post('event_title', true),
+                'event_slug' => slug($this->input->post('event_title', true)),
             );
 
-            $this->akreditasi->insert($data);
+            $this->events->insert($data);
             $this->session->set_flashdata('message','Data berhasil ditambahkan');
-            redirect(site_url('akreditasi/list_admin'));
+            redirect(site_url('events/list_admin'));
         }
     }
 
@@ -161,48 +148,38 @@ class Ak extends CI_Controller
             // redirect them to the login page
             redirect('auth/login', 'refresh');
         } else {
+            $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
             $this->data['is_user'] = $this->ion_auth->user()->row();
 
-            $row = $this->akreditasi->get_by_id($id);
+            $row = $this->event->get_by_id($id);
 
             if ($row) {
                 $this->data['button'] = 'Ubah';
-                $this->data['action'] = site_url('lowongan/ubah_aksi');
+                $this->data['action'] = site_url('event/ubah_aksi');
                 $this->data['id'] = array(
                     'name' => 'id',
                     'type' => 'hidden',
                     'value' => $this->form_validation->set_value('id', $row->id),
                     'class' => 'form-control',
-                    'required' => 'required',
                 );
-                $this->data['nama_perusahaan'] = array(
-                    'name' => 'nama_perusahaan',
+                $this->data['nama_event'] = array(
+                    'name' => 'nama_event',
                     'type' => 'text',
-                    'value' => $this->form_validation->set_value('nama_perusahaan', $row->nama_perusahaan),
+                    'value' => $this->form_validation->set_value('nama_event', $row->nama_event),
                     'class' => 'form-control',
-                    'required' => 'required',
                 );
-                $this->data['job_title'] = array(
-                    'name' => 'job_title',
+                $this->data['event_title'] = array(
+                    'name' => 'event_title',
                     'type' => 'text',
-                    'value' => $this->form_validation->set_value('job_title', $row->job_title),
+                    'value' => $this->form_validation->set_value('event_title', $row->event_title),
                     'class' => 'form-control',
-                    'required' => 'required',
                 );
 
-                $this->data['deskripsi'] = array(
-                    'name' => 'deskripsi',
-                    'type' => 'text',
-                    'value' => $this->form_validation->set_value('deskripsi', $row->deskripsi),
-                    'class' => 'form-control',
-                    'required' => 'required',
-                );
-
-                $this->data['_view'] = 'lowongan/lowongan_form';
+                $this->data['_view'] = 'event/event_form';
                 $this->template->_render_page('layouts/backend', $this->data);
             } else {
                 $this->session->set_flashdata('message','Data Tidak Ditemukan');
-                redirect(site_url('lowongan'));
+                redirect(site_url('event'));
             }
         }
     }
@@ -215,43 +192,40 @@ class Ak extends CI_Controller
             $this->update($this->input->post('id', true));
         } else {
             $data = array(
-            'nama_perusahaan' => $this->input->post('nama_perusahaan', true),
-            'job_title' => $this->input->post('job_title', true),
-            'job_slug' => slug($this->input->post('job_title', true)),
-            'deskripsi' => $this->input->post('deskripsi', true),
+            'nama_event' => $this->input->post('nama_event', true),
+            'event_title' => $this->input->post('event_title', true),
+            'event_slug' => slug($this->input->post('event_title', true)),
         );
 
-            $this->lowongan->update($this->input->post('id', true), $data);
+            $this->event->update($this->input->post('id', true), $data);
             $this->session->set_flashdata('message','Data berhasil di ubah');
-            redirect(site_url('lowongan/list_admin'));
+            redirect(site_url('event/list_admin'));
         }
     }
 
     public function delete($id)
     {
-        $row = $this->akreditasi->get_by_id($id);
+        $row = $this->eventa->get_by_id($id);
 
         if ($row) {
-            $this->akreditasi->delete($id);
+            $this->eventa->delete($id);
             $this->session->set_flashdata('message','Hapus data berhasil');
-            redirect(site_url('akreditasi'));
+            redirect(site_url('eventa/list_admin'));
         } else {
             $this->session->set_flashdata('message','Data tidak ditemukan');
-            redirect(site_url('akreditasi'));
+            redirect(site_url('eventa/list_admin'));
         }
     }
 
     public function _rules()
     {
-        $this->form_validation->set_rules('nama_perusahaan', 'nama perusahaan', 'trim|required');
-        $this->form_validation->set_rules('job_title', 'job title', 'trim|required');
-        $this->form_validation->set_rules('job_slug', 'job slug', 'trim');
-        $this->form_validation->set_rules('deskripsi', 'deskripsi', 'trim|required');
+        $this->form_validation->set_rules('nama_event', 'nama event', 'trim|required');
+        $this->form_validation->set_rules('event_title', 'event title', 'trim|required');
 
         $this->form_validation->set_rules('id', 'id', 'trim');
-        //$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 }
 
-/* End of file Lowongan.php */
-/* Location: ./application/controllers/Lowongan.php */
+/* End of file Event.php */
+/* Location: ./application/controllers/Event.php */

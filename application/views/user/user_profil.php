@@ -20,7 +20,7 @@
                             <table class="table table-hover">
                                 <tr><td>Id User</td><td><?php echo $id_user; ?></td></tr>
                                 <tr><td>Jenis Kelamin</td><td><?php echo $jenis_kelamin; ?></td></tr>
-                                <tr><td>jr</td><td><?php echo $jr; ?></td></tr>
+                                <tr><td>Prodi</td><td><?php echo $jr; ?></td></tr>
                                 <tr><td>nim</td><td><?php echo $nisn; ?></td></tr>
                                 <tr><td>Alamat</td><td><?php echo $alamat; ?></td></tr>
                                 <tr><td>No Telp</td><td><?php echo $no_telp; ?></td></tr>

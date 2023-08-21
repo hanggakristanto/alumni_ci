@@ -86,10 +86,10 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Foto</th>
-                                        <th>nisn</th>
+                                        <th>nim</th>
                                         <th>Nama</th>
                                         <th>Jenis Kelamin</th>
-                                        <th>jr</th>
+                                        <th>Prodi</th>
                                         <th>Tempat & Tanggal Lahir</th>
                                         <th>No Telp</th>
                                         <th>Tahun Lulus</th>

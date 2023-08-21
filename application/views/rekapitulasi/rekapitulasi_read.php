@@ -21,7 +21,7 @@
                                 <tr><td>nim</td><td><?php echo $nisn; ?></td></tr>
                                 <tr><td>Nama</td><td><?php echo humanize($first_name); ?> <?php echo humanize($last_name); ?></td></tr>
                                 <tr><td>Jenis Kelamin</td><td><?php echo $jenis_kelamin; ?></td></tr> 
-                                <tr><td>Jr</td><td><?php echo $jr; ?></td></tr>                                  
+                                <tr><td>Prodi</td><td><?php echo $jr; ?></td></tr>                                  
                                 <tr><td>Tempat & Tanggal Lahir</td><td><?php echo $tempat_lahir; ?>, <?php echo indonesian_date($tanggal_lahir); ?></td></tr>                                
                                 <tr><td>Alamat</td><td><?php echo $alamat; ?></td></tr>
                                 <tr><td>No Telp</td><td><?php echo $no_telp; ?></td></tr>
