@@ -20,7 +20,7 @@ class Main extends CI_Controller
     public function loker()
     {
         $this->data['_get_lowongan'] = $this->lowongan->read_per_month();
-        if(!isset($this->data['_get_lowongan'])||empty($this->data['_get_lowongan'])){
+        if (!isset($this->data['_get_lowongan']) || empty($this->data['_get_lowongan'])) {
             $this->data['message'] = 'Tidak ada Info bulan Ini!';
         }
         $this->data['_view'] = 'main/loker';
@@ -61,21 +61,35 @@ class Main extends CI_Controller
 
     public function lulusan()
     {
-        
-        $this->data['_partial_css'] = '<link href="'.base_url('assets/frontend').'/css/responsive-table.css" rel="stylesheet">';
-        $this->data['_partial_js'] = '<script src="'.base_url('assets/backend').'/js/responsive-table.js"></script>';
-        
+
+        $this->data['_partial_css'] = '<link href="' . base_url('assets/frontend') . '/css/responsive-table.css" rel="stylesheet">';
+        $this->data['_partial_js'] = '<script src="' . base_url('assets/backend') . '/js/responsive-table.js"></script>';
+
         //awal
-        
+
         //akhir
         $this->data['keyword'] = $this->input->post('keyword');
+        $opt = [
+            'img_path' => FCPATH . '\\captcha\\',
+            'img_url' => base_url('captcha'),
+            'expiration' => 7200,
+            'word_length' => 4
+        ];
+        $cap = create_captcha($opt);
+        $this->data['cap_image'] = $cap['image'];
         if (empty($this->data['keyword']) || !isset($this->data['keyword'])) {
             $this->data['message'] = '<h5>Anda Belum Mengisi Apapun!</h5>';
+            $this->session->set_userdata('cap_answer', $cap['word']);
         } else {
-            $keyword = $this->data['keyword'];
-            $this->data['_get_keyword'] = $this->profil->getSearchKeyword($keyword);
-            if (empty($this->data['_get_keyword']) || !isset($this->data['_get_keyword'])) {
-                $this->data['message'] = '<h5>Inputan anda tidak sesuai atau data tidak ditemukan!</h5>';
+
+            if ($this->input->post('capt_word') == $this->session->userdata('cap_answer')) {
+                $keyword = $this->data['keyword'];
+                $this->data['_get_keyword'] = $this->profil->getSearchKeyword($keyword);
+                if (empty($this->data['_get_keyword']) || !isset($this->data['_get_keyword'])) {
+                    $this->data['message'] = '<h5>Inputan anda tidak sesuai atau data tidak ditemukan!</h5>';
+                }
+            } else {
+                $this->data['message'] = '<h5>Captcha salah!</h5>';
             }
         }
 
@@ -87,8 +101,8 @@ class Main extends CI_Controller
     public function detail_pencarian($id_user)
     {
         //partial
-        $this->data['_partial_css'] = '<link href="'.base_url('assets/frontend').'/css/responsive-table.css" rel="stylesheet">';
-        $this->data['_partial_js'] = '<script src="'.base_url('assets/backend').'/js/responsive-table.js"></script>';
+        $this->data['_partial_css'] = '<link href="' . base_url('assets/frontend') . '/css/responsive-table.css" rel="stylesheet">';
+        $this->data['_partial_js'] = '<script src="' . base_url('assets/backend') . '/js/responsive-table.js"></script>';
         //partial
         $detail = $this->profil->get_alumni_by_user_id($id_user);
         if ($detail) {
@@ -114,7 +128,7 @@ class Main extends CI_Controller
     public function kegiatan()
     {
         $this->data['_get_event'] = $this->event->read_per_month();
-        if(!isset($this->data['_get_event'])||empty($this->data['_get_event'])){
+        if (!isset($this->data['_get_event']) || empty($this->data['_get_event'])) {
             $this->data['message'] = 'Tidak ada Info bulan Ini!';
         }
         $this->data['_view'] = 'main/kegiatan';
