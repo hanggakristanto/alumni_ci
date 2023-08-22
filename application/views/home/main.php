@@ -136,15 +136,10 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Foto</th>
                                         <th>NIM</th>
                                         <th>Nama</th>
-                                        <th>Jenis Kelamin</th>
                                         <th>Prodi</th>
-                                        <th>Tempat & Tanggal Lahir</th>
-                                        <th>No Telp</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
+                                        <th>Tahun yudisium</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -153,28 +148,14 @@
                                     foreach ($get_all as $row) : ?>
                                         <tr>
                                             <td><?php echo $i++; ?></td>
-                                            <td>
-                                                <?php if ($row->picture != 'default.jpg') : ?>
-                                                    <img src="<?php echo base_url('assets/backend/avatar/' . $row->picture) ?>" alt="" height="100" width="100">
-                                                <?php else : ?>
-                                                    <button type="button" class="btn btn-info btn-lg upload-picture" data-toggle="modal" data-target="#myModal" data-id="<?php echo $row->profil_id ?>">Upload
-                                                        Foto</button>
-                                            </td>
-                                        <?php endif ?>
+                                            
                                         <td><?php echo htmlspecialchars($row->nim, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php echo htmlspecialchars($row->first_name, ENT_QUOTES, 'UTF-8'); ?>
                                             <?php echo htmlspecialchars($row->last_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php echo htmlspecialchars($row->jenis_kelamin, ENT_QUOTES, 'UTF-8'); ?>
                                         </td>
                                         <td><?php echo htmlspecialchars($row->prodi, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php echo htmlspecialchars($row->tempat_lahir, ENT_QUOTES, 'UTF-8'); ?>,
-                                            <?php echo indonesian_date($row->tanggal_lahir); ?></td>
-                                        <td><?php echo htmlspecialchars($row->no_telp, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php echo htmlspecialchars($row->status ?? "active", ENT_QUOTES, 'UTF-8'); ?>
+                                        <td><?php echo htmlspecialchars($row->th_yudisium, ENT_QUOTES, 'UTF-8'); ?></td>
                                         </td>
-                                        <td><?php echo anchor('rekapitulasi/detail/' . $row->id_user, '<button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
-                                                    <i class="material-icons" data-toggle="tooltip" data-placement="top" title="Detail">list</i>
-                                                </button>'); ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -185,12 +166,7 @@
                                         <th>Foto</th>
                                         <th>nim</th>
                                         <th>Nama</th>
-                                        <th>Jenis Kelamin</th>
                                         <th>Prodi</th>
-                                        <th>Tempat & Tanggal Lahir</th>
-                                        <th>No Telp</th>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </tfoot>
                             </table>

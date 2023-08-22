@@ -1,6 +1,6 @@
 <div class="container">
 	<a class="line">
-		<h4 class="margin h1" data-aos="zoom-out" data-aos-duration="500">Pencarian Data Alumni</h4>
+		<h4 class="margin h1" data-aos="zoom-out" data-aos-duration="500">Cek Ijazah</h4>
 	</a>
 	<br />
 	<br />

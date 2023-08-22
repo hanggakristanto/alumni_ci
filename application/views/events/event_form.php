@@ -2,7 +2,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>Event</h2>
+                <h2>Tambah Data</h2>
             </div>
 			<?php if (isset($message)) {
     echo '<div class="alert bg-teal alert-dismissible" role="alert">

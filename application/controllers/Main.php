@@ -70,12 +70,13 @@ class Main extends CI_Controller
         //akhir
         $this->data['keyword'] = $this->input->post('keyword');
         $opt = [
-            'img_path' => FCPATH . '\\captcha\\',
+            'img_path' => './captcha/',
             'img_url' => base_url('captcha'),
             'expiration' => 7200,
             'word_length' => 4
         ];
         $cap = create_captcha($opt);
+        // var_dump($opt); die;
         $this->data['cap_image'] = $cap['image'];
         if (empty($this->data['keyword']) || !isset($this->data['keyword'])) {
             $this->data['message'] = '<h5>Anda Belum Mengisi Apapun!</h5>';

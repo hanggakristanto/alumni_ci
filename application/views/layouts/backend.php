@@ -183,27 +183,24 @@ $uri_string = $this->uri->uri_string();
         ?>
                     
                     
-                    <li <?php echo $segment1 == 'lowongan' ? 'class="active"' : ''; ?>>
-                        <?php echo anchor('lowongan/list_admin', '<i class="material-icons">work</i><span>Lowongan</span>'); ?>
-                    </li>
-                    <li <?php echo $segment1 == 'events' ? 'class="active"' : ''; ?>>
-                        <?php echo anchor('events/list_admin', '<i class="material-icons">work</i><span>Buku Wisuda</span>'); ?>
-                    </li>
-
-                    <li <?php echo $segment1 == 'event' ? 'class="active"' : ''; ?>>
-                        <?php echo anchor('event/list_admin', '<i class="material-icons">event</i><span>event</span>'); ?>
-                    </li>
                     <li <?php echo $segment1 == 'eventa' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('eventa/list_admin', '<i class="material-icons">event</i><span>SK Akreditasi</span>'); ?>
                     </li>
-                    <li <?php echo $segment1 == 'testimoni' ? 'class="active"' : ''; ?>>
-                        <?php echo anchor('testimoni/list_admin', '<i class="material-icons">record_voice_over</i><span>Testimoni</span>'); ?>
-                    </li>
-                    <li <?php echo $segment1 == 'kritik_saran' ? 'class="active"' : ''; ?>>
-                        <?php echo anchor('kritik_saran/list_admin', '<i class="material-icons">sentiment_neutral</i><span>Kritik dan Saran</span>'); ?>
-                    </li>
                     <li <?php echo $segment1 == 'rekapitulasi' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('rekapitulasi', '<i class="material-icons">report</i><span>Data Alumni</span>'); ?>
+                    </li>
+                    <li <?php echo $segment1 == 'tracer' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('tracer', '<i class="material-icons">report</i><span>Tracer Study</span>'); ?>
+                    </li>
+                    
+                    <li <?php echo $segment1 == 'events' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('events/list_admin', '<i class="material-icons">work</i><span>Buku Wisuda</span>'); ?>
+                    </li>
+                    <li <?php echo $segment1 == 'lowongan' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('lowongan/list_admin', '<i class="material-icons">work</i><span>Lowongan</span>'); ?>
+                    </li>
+                    <li <?php echo $segment1 == 'event' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('event/list_admin', '<i class="material-icons">event</i><span>event</span>'); ?>
                     </li>
                     <li <?php echo $segment1 == 'user' ? 'class="active"' : ''; ?>>
                         <a href="javascript:void(0);" class="menu-toggle">
@@ -219,22 +216,13 @@ $uri_string = $this->uri->uri_string();
                             </li>							
 						</ul>
                     </li>
-                    
-                    
-                    <li <?php echo $segment1 == 'referensi_tahun' || $segment1 == 'referensi_profesi' ? 'class="active"' : ''; ?>>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">search</i>
-                            <span>Referensi</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li <?php echo $segment1 == 'referensi_tahun' ? 'class="active"' : ''; ?>>
-                                <?php echo anchor('referensi_tahun', 'Ref Tahun'); ?>
-                            </li> 						
-                            <li <?php echo $segment1 == 'referensi_profesi' ? 'class="active"' : ''; ?>>
-                                <?php echo anchor('referensi_profesi', 'Ref Profesi'); ?>
-                            </li> 						
-						</ul>
+                    <li <?php echo $segment1 == 'testimoni' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('testimoni/list_admin', '<i class="material-icons">record_voice_over</i><span>Testimoni</span>'); ?>
                     </li>
+                    <li <?php echo $segment1 == 'kritik_saran' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('kritik_saran/list_admin', '<i class="material-icons">sentiment_neutral</i><span>Kritik dan Saran</span>'); ?>
+                    </li>
+                    
                     
                     <?php
     } ?>

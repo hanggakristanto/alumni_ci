@@ -64,7 +64,7 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down" >
       <li><?php echo anchor('main', 'Home'); ?></li>
-					        <li><?php echo anchor('main/lulusan', 'Data Alumni'); ?></li>
+					        <li><?php echo anchor('main/lulusan', 'Cek Ijazah'); ?></li>
 					        <li><?php echo anchor('main/loker', 'Bursa Kerja'); ?></li>
                             <li><?php echo anchor('main/kegiatan', 'Kegiatan'); ?></li>                            
 					        <!-- <li><?php echo anchor('main/kegiatan', 'Testimoni'); ?></li> -->
@@ -94,7 +94,7 @@
       </ul>
       <ul class="side-nav" id="mobile-demo">
       <li><?php echo anchor('main', 'Home'); ?></li>
-					        <li><?php echo anchor('main/lulusan', 'Data Alumni'); ?></li>
+					        <li><?php echo anchor('main/lulusan', 'Cek Ijazah'); ?></li>
 					        <li><?php echo anchor('main/loker', 'Bursa Kerja'); ?></li>
                             <li><?php echo anchor('main/kegiatan', 'Kegiatan'); ?></li>                            
 					        <!-- <li><?php echo anchor('main/t', 'Testimoni'); ?></li> -->
@@ -112,7 +112,7 @@
 			      		<ul id="nav-mobile" class="hide-on-med-and-down">
 					      
                             <li><?php echo anchor('main', 'Home'); ?></li>
-					        <li><?php echo anchor('main/lulusan', 'Data Alumni'); ?></li>
+					        <li><?php echo anchor('main/lulusan', 'Cek Ijazah'); ?></li>
 					        <li><?php echo anchor('main/loker', 'Bursa Kerja'); ?></li>
                             <li><?php echo anchor('main/kegiatan', 'Kegiatan'); ?></li>                            
 					        <li><?php echo anchor('main/about', 'Tentang Aplikasi'); ?></li>

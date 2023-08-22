@@ -1,7 +1,7 @@
 <section class="content">
 <div class="container-fluid">
             <div class="block-header">
-                <h2>Akreditasi</h2>
+                <h2>Tracer Study</h2>
             </div>
 			<?php if (isset($message)) {
     echo '<div class="alert bg-teal alert-dismissible" role="alert" id="flash-msg">
@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                               SK Akreditasi
+                               Tracer Study
                             </h2>
                             
                         </div> <br>
