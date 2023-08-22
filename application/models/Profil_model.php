@@ -74,10 +74,8 @@ class Profil_model extends CI_Model
         $this->db->like('first_name', $keyword);
         $this->db->or_like('last_name', $keyword);
         $this->db->or_like('jenis_kelamin', $keyword);
-        $this->db->or_like('nisn', $keyword);
-        $this->db->or_like('tahun_lulus', $keyword);
+        $this->db->or_like('nim', $keyword);
         $this->db->or_like('no_ijazah', $keyword);
-        $this->db->or_like('no_skhun', $keyword);
 
         //tambah
         $this->db->or_like('tempat_lahir', $keyword);

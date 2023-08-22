@@ -5,8 +5,11 @@
 		<?php echo form_open('main/lulusan'); ?>
 		<?php echo
 
-            form_input('keyword', '', 'placeholder = "Cari data berdasarkan nim, nama, tahun lulus, jenis kelamin,jr, nomor ijazah, nomor SKHUN" class = "form-control" data-aos="zoom-out" data-aos-duration="500" autocomplete="off"');
-        ?>
+            form_input('keyword', '', 'placeholder = "Masukkan NIM" class = "form-control" data-aos="zoom-out" data-aos-duration="500" autocomplete="off"');
+            
+			
+		?>
+          
 		<center>
 			<?php echo form_submit('Cari', 'cari', array('class' => 'btn btn-default waves-effect', 'data-aos' => 'zoom-out', 'data-aos-duration' => '500')); ?>
 		</center>
@@ -25,14 +28,15 @@
 				<thead>
 				<tr>
 					<th>No</th>
+					<th>Foto</th>
 					<th>Nama</th>
 					<th>NIM</th>
 					<th>Jenis Kelamin</th>
 					<th>Prodi</th>	
-					<th>Tahun Lulus</th>
 					<th>No. Ijazah</th>
 					<th>IPK</th>
-					<th>Detail</th>
+					<th>Tanggal Yudisium</th>
+					<th>Sk Yudidium</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -44,14 +48,16 @@
 					
 					<tr>
 						<td>'.$i++.'</td>
+						<td><img src="' . base_url('assets/backend/avatar/' . $key->picture) . '" alt="" height="100" width="100"></td>
 						<td>'.$key->first_name.' '.$key->last_name.'</td>
-						<td>'.$key->nisn.'</td>
+						<td>'.$key->nim.'</td>
 						<td>'.$key->jenis_kelamin.'</td>
-						<td>'.$key->jr.'</td>
-						<td>'.$key->tahun_lulus.'</td>
+						<td>'.$key->prodi.'</td>
 						<td>'.$key->no_ijazah.'</td>
-						<td>'.$key->no_skhun.'</td>
-						<td>'.anchor('main/detail_pencarian/'.$key->id_user.'', 'Lihat Detail').'</td>
+						<td>'.$key->ipk.'</td>
+						<td>'.$key->th_yudisium.'</td>
+						<td>'.$key->sk_yudisium.'</td>
+						
 					</tr>				
 					
 					';

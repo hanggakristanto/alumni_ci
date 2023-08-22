@@ -69,11 +69,11 @@ class Rekapitulasi extends CI_Controller
 
             $row = $this->rekapitulasi->get_alumni_by_user_id($id_user);
             if ($row) {
-                $this->data['nisn'] = $this->form_validation->set_value('nisn', $row->nisn);
+                $this->data['nim'] = $this->form_validation->set_value('nim', $row->nim);
                 $this->data['first_name'] = $this->form_validation->set_value('first_name', $row->first_name);
                 $this->data['last_name'] = $this->form_validation->set_value('last_name', $row->last_name);
                 $this->data['jenis_kelamin'] = $this->form_validation->set_value('jenis_kelamin', $row->jenis_kelamin);
-                $this->data['jr'] = $this->form_validation->set_value('jr', $row->jr);
+                $this->data['prodi'] = $this->form_validation->set_value('prodi', $row->prodi);
                 $this->data['tempat_lahir'] = $this->form_validation->set_value('tempat_lahir', $row->tempat_lahir);
                 $this->data['tanggal_lahir'] = $this->form_validation->set_value('tanggal_lahir', $row->tanggal_lahir);
                 $this->data['alamat'] = $this->form_validation->set_value('alamat', $row->alamat);
@@ -83,11 +83,12 @@ class Rekapitulasi extends CI_Controller
                 $this->data['nama_ibu'] = $this->form_validation->set_value('nama_ibu', $row->nama_ibu);
                 $this->data['pekerjaan_ibu'] = $this->form_validation->set_value('pekerjaan_ibu', $row->pekerjaan_ibu);
                 $this->data['tahun_masuk'] = $this->form_validation->set_value('tahun_masuk', $row->tahun_masuk);
-                $this->data['tahun_lulus'] = $this->form_validation->set_value('tahun_lulus', $row->tahun_lulus);
                 $this->data['no_ijazah'] = $this->form_validation->set_value('no_ijazah', $row->no_ijazah);
-                $this->data['no_skhun'] = $this->form_validation->set_value('no_skhun', $row->no_skhun);
                 $this->data['status'] = $this->form_validation->set_value('status', $row->status);
                 $this->data['deskripsi'] = $this->form_validation->set_value('deskripsi', $row->deskripsi);
+                $this->data['ipk'] = $this->form_validation->set_value('ipk', $row->ipk);
+                $this->data['th_yudisium'] = $this->form_validation->set_value('th_yudisium', $row->th_yudisium);
+                $this->data['sk_yudisium'] = $this->form_validation->set_value('sk_yudisium', $row->sk_yudisium);
 
                 $this->data['_view'] = 'rekapitulasi/rekapitulasi_read';
                 $this->template->_render_page('layouts/backend', $this->data);
@@ -139,7 +140,7 @@ class Rekapitulasi extends CI_Controller
                 continue;
             }
             $email = $value['email'];
-            $password = $value['nisn'];
+            $password = $value['nim'];
             $addtional_data = [
                 'first_name' => $value['first_name'],
                 'last_name' => $value['last_name'],
@@ -148,15 +149,17 @@ class Rekapitulasi extends CI_Controller
             if ($create_user !== FALSE) {
                 $value['id_user'] = $create_user;
                 $value['tanggal_lahir'] = ImportExcel::formatDate($value['tanggal_lahir']);
+                $value['tahun_masuk'] = ImportExcel::formatDate($value['tahun_masuk']);
+                $value['th_yudisium'] = ImportExcel::formatDate($value['th_yudisium']);
                 $this->rekapitulasi->insert_profil($value);
                 $success++;
             }
         }
-        if (!empty($errors)) {
+        if (empty($errors)) {
             // var_dump($errors); die;
             $this->session->set_flashdata('message', 'data row ' . implode(',', array_keys($errors)) . ' tidak berhasil di import');
         } else {
-            $this->session->set_flashdata('message', 'success import ' . $success . ' data');
+            $this->session->set_flashdata('message', 'import ' . $success . ' data');
         }
         redirect(site_url('rekapitulasi'));
     }
@@ -164,7 +167,7 @@ class Rekapitulasi extends CI_Controller
     public function download_template()
     {
         $this->load->helper('download');
-        $file = __DIR__ . '/../../temp/template_import.xlsx';
+        $file = __DIR__ . '/../../temp/template_import2.xlsx';
         force_download($file, NULL);
     }
 

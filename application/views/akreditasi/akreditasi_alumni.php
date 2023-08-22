@@ -20,11 +20,8 @@
                             </h2>
                             
                         </div> <br>
-
                                     <div class="container-fluid">
-                                        <p>Download SK Akreditasi Perguruan Tinggi :</p>
-                                        <a href="#" class="btn btn-primary stretched-link">SK Akreditasi Perguruan Tinggi SI</a> <br>
-                                        <a href="#" class="btn btn-primary stretched-link">SK Akreditasi Perguruan Tinggi TI</a>
+                                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdrviuqHwKRnkANcfnbxdYAQdhmwXuFdPAvv8rKcT8z6Z1N2w/viewform?embedded=true" width="100%" height="931" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe>
                                     </div> <br>
                                 </div>
                             </div>

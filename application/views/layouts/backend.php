@@ -165,6 +165,9 @@ $uri_string = $this->uri->uri_string();
                     <li <?php echo $segment1 == 'event' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('event', '<i class="material-icons">event</i><span>Event</span>'); ?>
                     </li>
+                    <li <?php echo $segment1 == 'akreditasi' ? 'class="active"' : ''; ?>>
+                        <?php echo anchor('akreditasi', '<i class="material-icons">event</i><span>Tracer Study</span>'); ?>
+                    </li>
                    
                     <li <?php echo $segment1 == 'testimoni' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('testimoni', '<i class="material-icons">record_voice_over</i><span>Testimoni</span>'); ?>

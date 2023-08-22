@@ -22,7 +22,7 @@
 				<?php foreach ($_get_is_tampil as $row) :?>
 				<div class="mySlides" data-aos="zoom-in-down" data-aos-duration="500">
 				<q class="light justify" data-aos="zoom-in-down" data-aos-duration="500"><?php echo $row->testimoni; ?></q>
-				<p class="author" data-aos="zoom-in-down" data-aos-duration="500"><?php echo ucfirst($row->first_name); ?> <?php echo ucfirst($row->last_name); ?>- Alumni <?php echo $row->tahun_lulus; ?></p>
+				<p class="author" data-aos="zoom-in-down" data-aos-duration="500"><?php echo ucfirst($row->first_name); ?> <?php echo ucfirst($row->last_name); ?>- Alumni <?php echo $row->th_yudisium; ?></p>
 				</div>
 				<?php endforeach; ?>
 

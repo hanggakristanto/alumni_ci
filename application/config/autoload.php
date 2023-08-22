@@ -90,7 +90,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'language', 'inflector', 'slug', 'text', 'indonesian_date');
+$autoload['helper'] = array('url', 'language', 'inflector', 'slug', 'text', 'indonesian_date','captcha');
 
 /*
 | -------------------------------------------------------------------

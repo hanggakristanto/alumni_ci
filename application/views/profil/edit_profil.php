@@ -95,8 +95,8 @@
 								<?php echo form_open($aksi); ?>
 									<div class="form-group form-float">
 										<div class="form-line">																
-											<?php echo form_input($nisn); ?>
-											<?php echo form_label('nisn', 'nisn', 'class="form-label"'); ?>	
+											<?php echo form_input($nim); ?>
+											<?php echo form_label('nim', 'nim', 'class="form-label"'); ?>	
 										</div>
 									</div>
 									<div class="row clearfix">
@@ -144,20 +144,8 @@
 									</div>
 									<div class="form-group form-float">
 										<div class="form-line">																
-											<?php echo form_input($tahun_lulus); ?>
-											<?php echo form_label('Tahun Lulus', 'tahun_lulus', 'class="form-label"'); ?>	
-										</div>
-									</div>
-									<div class="form-group form-float">
-										<div class="form-line">																
 											<?php echo form_input($no_ijazah); ?>
 											<?php echo form_label('No. Seri Ijazah', 'no_ijazah', 'class="form-label"'); ?>	
-										</div>
-									</div>
-									<div class="form-group form-float">
-										<div class="form-line">																
-											<?php echo form_input($no_skhun); ?>
-											<?php echo form_label('No. SKHUN', 'no_skhun', 'class="form-label"'); ?>	
 										</div>
 									</div>
 									<br/>

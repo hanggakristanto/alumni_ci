@@ -98,3 +98,23 @@ nav ul li a {
 	color: #bf0026;
 	font-size: 1.2rem;
 }
+input[type="text"] {
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+button {
+	background-color: #4caf50;
+	border: none;
+	color: white;
+	padding: 12px 30px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+canvas {
+	/*prevent interaction with the canvas*/
+	pointer-events: none;
+}

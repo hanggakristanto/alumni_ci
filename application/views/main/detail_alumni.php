@@ -15,7 +15,7 @@
                 <tr>
                     <td>nim</td>
                     <td>:</td>
-                    <td>'.$nisn.'</td>
+                    <td>'.$nim.'</td>
                 </tr>
                 <tr>
                     <td>Nama</td>
@@ -40,7 +40,7 @@
                 <tr>
                     <td>Prodi</td>
                     <td>:</td>
-                    <td>'.$jr.'</td>
+                    <td>'.$prodi.'</td>
                 </tr>
                 <tr>
                     <td>Tahun Masuk</td>
@@ -48,19 +48,9 @@
                     <td>'.$tahun_masuk.'</td>
                 </tr>
                 <tr>
-                    <td>Tahun Lulus</td>
-                    <td>:</td>
-                    <td>'.$tahun_lulus.'</td>
-                </tr>
-                <tr>
                     <td>No. Ijazah</td>
                     <td>:</td>
                     <td>'.$no_ijazah.'</td>
-                </tr>
-                <tr>
-                    <td>No. SKHUN</td>
-                    <td>:</td>
-                    <td>'.$no_skhun.'</td>
                 </tr>
                 <tr>
                     <td>Tanggal Lahir</td>

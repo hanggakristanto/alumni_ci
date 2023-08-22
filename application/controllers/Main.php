@@ -61,10 +61,13 @@ class Main extends CI_Controller
 
     public function lulusan()
     {
-        //partial
+        
         $this->data['_partial_css'] = '<link href="'.base_url('assets/frontend').'/css/responsive-table.css" rel="stylesheet">';
         $this->data['_partial_js'] = '<script src="'.base_url('assets/backend').'/js/responsive-table.js"></script>';
-        //partial
+        
+        //awal
+        
+        //akhir
         $this->data['keyword'] = $this->input->post('keyword');
         if (empty($this->data['keyword']) || !isset($this->data['keyword'])) {
             $this->data['message'] = '<h5>Anda Belum Mengisi Apapun!</h5>';
@@ -91,11 +94,9 @@ class Main extends CI_Controller
         if ($detail) {
             $this->data['first_name'] = set_value('first_name', $detail->first_name);
             $this->data['last_name'] = set_value('last_name', $detail->last_name);
-            $this->data['nisn'] = set_value('nisn', $detail->nisn);
+            $this->data['nim'] = set_value('nim', $detail->nim);
             $this->data['jenis_kelamin'] = set_value('jenis_kelamin', $detail->jenis_kelamin);
-            $this->data['tahun_lulus'] = set_value('tahun_lulus', $detail->tahun_lulus);
             $this->data['no_ijazah'] = set_value('no_ijazah', $detail->no_ijazah);
-            $this->data['no_skhun'] = set_value('no_skhun', $detail->no_skhun);
             //tambah
 
             $this->data['tanggal_lahir'] = set_value('tanggal_lahir', $detail->tanggal_lahir);
@@ -103,7 +104,7 @@ class Main extends CI_Controller
             $this->data['tempat_lahir'] = set_value('tempat_lahir', $detail->tempat_lahir);
             $this->data['alamat'] = set_value('alamat', $detail->alamat);
             $this->data['no_telp'] = set_value('no_telp', $detail->no_telp);
-            $this->data['jr'] = set_value('jr', $detail->jr);
+            $this->data['prodi'] = set_value('prodi', $detail->prodi);
         }
         $this->data['_view'] = 'main/detail_alumni';
 

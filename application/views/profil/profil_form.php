@@ -63,9 +63,9 @@
 												<option value="TI">TI</option>
 												<option value="SI">SI</option>
 											</select> -->
-										<?php echo form_error('jr');
+										<?php echo form_error('prodi');
                                             echo
-                                            form_dropdown($jr, array('ti' => 'TI', 'si' => 'SI'), $jr['value']);
+                                            form_dropdown($prodi, array('ti' => 'TI', 'si' => 'SI'), $prodi['value']);
                                         ?>
 										</div>
 									</div>
@@ -78,10 +78,10 @@
 								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 									<div class="form-group">
 										<div class="form-line">
-										<?php echo form_error('nisn');
-                                            echo form_input($nisn);
+										<?php echo form_error('nim');
+                                            echo form_input($nim);
                                         ?>
-										<!-- <?php echo form_input($nisn); ?><?php echo lang('edit_user_fname_label', 'nisn', 'class="form-label"'); ?>  -->
+										<!-- <?php echo form_input($nim); ?><?php echo lang('edit_user_fname_label', 'nim', 'class="form-label"'); ?>  -->
 										</div>
 									</div>
 								</div>
@@ -230,26 +230,6 @@
 							</div>
 						  	<div class="row clearfix">
 								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-									<?php echo form_label('Tahun Lulus'); ?>
-								</div>
-								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-									<div class="form-group">
-									<div class="form-line">
-										<?php echo form_error('tahun_lulus');
-
-                                            $row_tahun = array();
-                                            foreach ($_ref_tahun as $ref) {
-                                                $row_tahun[$ref->ref_tahun] = $ref->ref_tahun;
-                                            }
-                                            echo form_dropdown($tahun_lulus, $row_tahun, $tahun_lulus['value']);
-                                        ?>
-										
-									</div>
-									</div>
-								</div>
-							</div>
-						  	<div class="row clearfix">
-								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
 									<?php echo form_label('No Ijazah'); ?>
 								</div>
 								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
@@ -257,20 +237,6 @@
 										<div class="form-line">
 										<?php echo form_error('no_ijazah');
                                             echo form_input($no_ijazah);
-                                        ?>
-										</div>
-									</div>
-								</div>
-							</div>
-						  	<div class="row clearfix">
-								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-									<?php echo form_label('No Seri'); ?>
-								</div>
-								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-									<div class="form-group">
-										<div class="form-line">
-										<?php echo form_error('no_skhun');
-                                            echo form_input($no_skhun);
                                         ?>
 										</div>
 									</div>

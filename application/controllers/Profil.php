@@ -175,10 +175,10 @@ class Profil extends CI_Controller
                 'class' => 'form-control show-tick',
                 'required' => 'required',
             );
-            $this->data['jr'] = array(
-                'name' => 'jr',
+            $this->data['prodi'] = array(
+                'name' => 'prodi',
                 'type' => 'text',
-                'value' => $this->form_validation->set_value('jr'),
+                'value' => $this->form_validation->set_value('prodi'),
                 'class' => 'form-control show-tick',
                 'required' => 'required',
             );
@@ -196,10 +196,10 @@ class Profil extends CI_Controller
                 'class' => 'form-control',
                 'required' => 'required',
             );
-            $this->data['nisn'] = array(
-                'name' => 'nisn',
+            $this->data['nim'] = array(
+                'name' => 'nim',
                 'type' => 'text',
-                'value' => $this->form_validation->set_value('nisn'),
+                'value' => $this->form_validation->set_value('nim'),
                 'class' => 'form-control',
                 'required' => 'required',
             );
@@ -255,25 +255,10 @@ class Profil extends CI_Controller
                 'required' => 'required',
                 'data-live-search' => 'true',
             );
-            $this->data['tahun_lulus'] = array(
-                'name' => 'tahun_lulus',
-                'type' => 'text',
-                'value' => $this->form_validation->set_value('tahun_lulus'),
-                'class' => 'form-control show-tick',
-                'required' => 'required',
-                'data-live-search' => 'true',
-            );
             $this->data['no_ijazah'] = array(
                 'name' => 'no_ijazah',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('no_ijazah'),
-                'class' => 'form-control',
-                'required' => 'required',
-            );
-            $this->data['no_skhun'] = array(
-                'name' => 'no_skhun',
-                'type' => 'text',
-                'value' => $this->form_validation->set_value('no_skhun'),
                 'class' => 'form-control',
                 'required' => 'required',
             );
@@ -301,10 +286,10 @@ class Profil extends CI_Controller
             $data = array(
             'id_user' => $this->input->post('id_user', true),
             'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
-            'jr' => $this->input->post('jr', true),
+            'prodi' => $this->input->post('prodi', true),
             'tempat_lahir' => $this->input->post('tempat_lahir', true),
             'tanggal_lahir' => $this->input->post('tanggal_lahir', true),
-            'nisn' => $this->input->post('nisn', true),
+            'nim' => $this->input->post('nim', true),
             'alamat' => $this->input->post('alamat', true),
             'no_telp' => $this->input->post('no_telp', true),
             'nama_ayah' => $this->input->post('nama_ayah', true),
@@ -312,9 +297,7 @@ class Profil extends CI_Controller
             'nama_ibu' => $this->input->post('nama_ibu', true),
             'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu', true),
             'tahun_masuk' => $this->input->post('tahun_masuk', true),
-            'tahun_lulus' => $this->input->post('tahun_lulus', true),
             'no_ijazah' => $this->input->post('no_ijazah', true),
-            'no_skhun' => $this->input->post('no_skhun', true),
             );
 
             // var_dump($data);
@@ -366,10 +349,10 @@ class Profil extends CI_Controller
                     'class' => 'form-control show-tick',
                     'required' => 'required',
                 );
-                $this->data['jr'] = array(
-                    'name' => 'jr',
+                $this->data['prodi'] = array(
+                    'name' => 'prodi',
                     'type' => 'text',
-                    'value' => $this->form_validation->set_value('jr', $row->jr),
+                    'value' => $this->form_validation->set_value('prodi', $row->prodi),
                     'class' => 'form-control show-tick',
                     'required' => 'required',
                 );
@@ -387,10 +370,10 @@ class Profil extends CI_Controller
                     'class' => 'form-control',
                     'required' => 'required',
                 );
-                $this->data['nisn'] = array(
-                    'name' => 'nisn',
+                $this->data['nim'] = array(
+                    'name' => 'nim',
                     'type' => 'text',
-                    'value' => $this->form_validation->set_value('nisn', $row->nisn),
+                    'value' => $this->form_validation->set_value('nim', $row->nim),
                     'class' => 'form-control',
                     'required' => 'required',
                 );
@@ -446,25 +429,10 @@ class Profil extends CI_Controller
                     'required' => 'required',
                     'data-live-search' => 'true',
                 );
-                $this->data['tahun_lulus'] = array(
-                    'name' => 'tahun_lulus',
-                    'type' => 'text',
-                    'value' => $this->form_validation->set_value('tahun_lulus', $row->tahun_lulus),
-                    'class' => 'form-control show-tick',
-                    'required' => 'required',
-                    'data-live-search' => 'true',
-                );
                 $this->data['no_ijazah'] = array(
                     'name' => 'no_ijazah',
                     'type' => 'text',
                     'value' => $this->form_validation->set_value('no_ijazah', $row->no_ijazah),
-                    'class' => 'form-control',
-                    'required' => 'required',
-                );
-                $this->data['no_skhun'] = array(
-                    'name' => 'no_skhun',
-                    'type' => 'text',
-                    'value' => $this->form_validation->set_value('no_skhun', $row->no_skhun),
                     'class' => 'form-control',
                     'required' => 'required',
                 );
@@ -493,10 +461,10 @@ class Profil extends CI_Controller
             $data = array(
             'id_user' => $this->input->post('id_user', true),
             'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
-            'jr' => $this->input->post('jr', true),
+            'prodi' => $this->input->post('prodi', true),
             'tempat_lahir' => $this->input->post('tempat_lahir', true),
             'tanggal_lahir' => $this->input->post('tanggal_lahir', true),
-            'nisn' => $this->input->post('nisn', true),
+            'nim' => $this->input->post('nim', true),
             'alamat' => $this->input->post('alamat', true),
             'no_telp' => $this->input->post('no_telp', true),
             'nama_ayah' => $this->input->post('nama_ayah', true),
@@ -504,9 +472,7 @@ class Profil extends CI_Controller
             'nama_ibu' => $this->input->post('nama_ibu', true),
             'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu', true),
             'tahun_masuk' => $this->input->post('tahun_masuk', true),
-            'tahun_lulus' => $this->input->post('tahun_lulus', true),
             'no_ijazah' => $this->input->post('no_ijazah', true),
-            'no_skhun' => $this->input->post('no_skhun', true),
         );
 
             $this->profil->update($this->input->post('id', true), $data);
@@ -702,10 +668,10 @@ class Profil extends CI_Controller
     {
         $this->form_validation->set_rules('id_user', 'id user', 'trim|required');
         $this->form_validation->set_rules('jenis_kelamin', 'jenis kelamin', 'trim|required');
-        $this->form_validation->set_rules('jr', 'jr', 'trim|required');
+        $this->form_validation->set_rules('prodi', 'prodi', 'trim|required');
         $this->form_validation->set_rules('tempat_lahir', 'tempat lahir', 'trim|required');
         $this->form_validation->set_rules('tanggal_lahir', 'tanggal lahir', 'trim|required');
-        $this->form_validation->set_rules('nisn', 'nisn', 'trim|required');
+        $this->form_validation->set_rules('nim', 'nim', 'trim|required');
         $this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
         $this->form_validation->set_rules('no_telp', 'no telp', 'trim|required');
         $this->form_validation->set_rules('nama_ayah', 'nama ayah', 'trim|required');
@@ -713,9 +679,7 @@ class Profil extends CI_Controller
         $this->form_validation->set_rules('nama_ibu', 'nama ibu', 'trim|required');
         $this->form_validation->set_rules('pekerjaan_ibu', 'pekerjaan ibu', 'trim|required');
         $this->form_validation->set_rules('tahun_masuk', 'tahun masuk', 'trim|required');
-        $this->form_validation->set_rules('tahun_lulus', 'tahun lulus', 'trim|required');
         $this->form_validation->set_rules('no_ijazah', 'no ijazah', 'trim|required');
-        $this->form_validation->set_rules('no_skhun', 'No Seri', 'trim|required');
 
         $this->form_validation->set_rules('id', 'id', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

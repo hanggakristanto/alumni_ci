@@ -141,16 +141,14 @@ CREATE TABLE `profil` (
   `nama_ibu` varchar(50) NOT NULL,
   `pekerjaan_ibu` varchar(20) NOT NULL,
   `tahun_masuk` varchar(9) NOT NULL,
-  `tahun_lulus` varchar(9) NOT NULL,
-  `no_ijazah` varchar(50) NOT NULL,
-  `no_skhun` varchar(50) NOT NULL
+  `no_ijazah` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `profil`
 --
 
-INSERT INTO `profil` (`id`, `id_user`, `jenis_kelamin`, `jr`, `tempat_lahir`, `tanggal_lahir`, `nim`, `alamat`, `no_telp`, `nama_ayah`, `pekerjaan_ayah`, `nama_ibu`, `pekerjaan_ibu`, `tahun_masuk`, `tahun_lulus`, `no_ijazah`, `no_skhun`) VALUES
+INSERT INTO `profil` (`id`, `id_user`, `jenis_kelamin`, `jr`, `tempat_lahir`, `tanggal_lahir`, `nim`, `alamat`, `no_telp`, `nama_ayah`, `pekerjaan_ayah`, `nama_ibu`, `pekerjaan_ibu`, `tahun_masuk`, `no_ijazah`) VALUES
 (5, 4, 'Laki-Laki', 'ti', 'Malang', '2023-07-11', 2147483647, 'asd', '123', 'asdasd', 'BELUM/TIDAK BEKERJA', 'qwdqwdqwd', 'BELUM/TIDAK BEKERJA', '2015', '2018', '123123', '123123');
 
 -- --------------------------------------------------------

@@ -44,7 +44,6 @@
                                         <th>Prodi</th>
                                         <th>Tempat & Tanggal Lahir</th>
                                         <th>No Telp</th>
-                                        <th>Tahun Lulus</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -63,16 +62,15 @@
                                                         Foto</button>
                                             </td>
                                         <?php endif ?>
-                                        <td><?php echo htmlspecialchars($row->nisn, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php echo htmlspecialchars($row->nim, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php echo htmlspecialchars($row->first_name, ENT_QUOTES, 'UTF-8'); ?>
                                             <?php echo htmlspecialchars($row->last_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php echo htmlspecialchars($row->jenis_kelamin, ENT_QUOTES, 'UTF-8'); ?>
                                         </td>
-                                        <td><?php echo htmlspecialchars($row->jr, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php echo htmlspecialchars($row->prodi, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php echo htmlspecialchars($row->tempat_lahir, ENT_QUOTES, 'UTF-8'); ?>,
                                             <?php echo indonesian_date($row->tanggal_lahir); ?></td>
                                         <td><?php echo htmlspecialchars($row->no_telp, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php echo htmlspecialchars($row->tahun_lulus, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php echo htmlspecialchars($row->status ?? "active", ENT_QUOTES, 'UTF-8'); ?>
                                         </td>
                                         <td><?php echo anchor('rekapitulasi/detail/' . $row->id_user, '<button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float">
@@ -92,7 +90,6 @@
                                         <th>Prodi</th>
                                         <th>Tempat & Tanggal Lahir</th>
                                         <th>No Telp</th>
-                                        <th>Tahun Lulus</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>

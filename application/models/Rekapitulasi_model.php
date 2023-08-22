@@ -11,12 +11,11 @@ class Rekapitulasi_model extends CI_Model
     public $order = 'DESC';
 
     public $fillable = [
-        'id_user', 'jenis_kelamin', 'jr',
-        'tempat_lahir', 'tanggal_lahir', 'nisn',
+        'id_user', 'jenis_kelamin', 'prodi',
+        'tempat_lahir', 'tanggal_lahir', 'nim',
         'alamat', 'no_telp', 'nama_ayah',
         'pekerjaan_ayah', 'nama_ibu', 'pekerjaan_ibu',
-        'tahun_masuk', 'tahun_lulus', 'no_ijazah',
-        'no_skhun', 'status', 'deskripsi'
+        'tahun_masuk', 'no_ijazah', 'status', 'deskripsi','ipk', 'th_yudisium', 'sk_yudisium'
     ];
 
     public function __construct()

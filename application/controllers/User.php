@@ -506,7 +506,7 @@ class User extends CI_Controller
                 $this->data['id'] = $this->form_validation->set_value('id', $row->id);
                 $this->data['id_user'] = $this->form_validation->set_value('id_user', $row->id_user);
                 $this->data['jenis_kelamin'] = $this->form_validation->set_value('jenis_kelamin', $row->jenis_kelamin);
-                $this->data['nisn'] = $this->form_validation->set_value('nisn', $row->nisn);
+                $this->data['nim'] = $this->form_validation->set_value('nim', $row->nim);
                 $this->data['alamat'] = $this->form_validation->set_value('alamat', $row->alamat);
                 $this->data['no_telp'] = $this->form_validation->set_value('no_telp', $row->no_telp);
                 $this->data['nama_ayah'] = $this->form_validation->set_value('nama_ayah', $row->nama_ayah);
@@ -514,9 +514,7 @@ class User extends CI_Controller
                 $this->data['nama_ibu'] = $this->form_validation->set_value('nama_ibu', $row->nama_ibu);
                 $this->data['pekerjaan_ibu'] = $this->form_validation->set_value('pekerjaan_ibu', $row->pekerjaan_ibu);
                 $this->data['tahun_masuk'] = $this->form_validation->set_value('tahun_masuk', $row->tahun_masuk);
-                $this->data['tahun_lulus'] = $this->form_validation->set_value('tahun_lulus', $row->tahun_lulus);
                 $this->data['no_ijazah'] = $this->form_validation->set_value('no_ijazah', $row->no_ijazah);
-                $this->data['no_skhun'] = $this->form_validation->set_value('no_skhun', $row->no_skhun);
 
                 $this->data['_view'] = 'user/user_profil';
                 $this->template->_render_page('layouts/backend', $this->data);

@@ -18,10 +18,10 @@
                         </div>
                         <div class="body table-responsive">
                             <table class="table table-hover">
-                                <tr><td>nim</td><td><?php echo $nisn; ?></td></tr>
+                                <tr><td>nim</td><td><?php echo $nim; ?></td></tr>
                                 <tr><td>Nama</td><td><?php echo humanize($first_name); ?> <?php echo humanize($last_name); ?></td></tr>
                                 <tr><td>Jenis Kelamin</td><td><?php echo $jenis_kelamin; ?></td></tr> 
-                                <tr><td>Prodi</td><td><?php echo $jr; ?></td></tr>                                  
+                                <tr><td>Prodi</td><td><?php echo $prodi; ?></td></tr>                                  
                                 <tr><td>Tempat & Tanggal Lahir</td><td><?php echo $tempat_lahir; ?>, <?php echo indonesian_date($tanggal_lahir); ?></td></tr>                                
                                 <tr><td>Alamat</td><td><?php echo $alamat; ?></td></tr>
                                 <tr><td>No Telp</td><td><?php echo $no_telp; ?></td></tr>
@@ -30,11 +30,12 @@
                                 <tr><td>Nama Ibu</td><td><?php echo $nama_ibu; ?></td></tr>
                                 <tr><td>Pekerjaan Ibu</td><td><?php echo $pekerjaan_ibu; ?></td></tr>
                                 <tr><td>Tahun Masuk</td><td><?php echo $tahun_masuk; ?></td></tr>
-                                <tr><td>Tahun Lulus</td><td><?php echo $tahun_lulus; ?></td></tr>
                                 <tr><td>No Ijazah</td><td><?php echo $no_ijazah; ?></td></tr>
-                                <tr><td>No Seri</td><td><?php echo $no_skhun; ?></td></tr>
                                 <tr><td>Status</td><td><?php echo $status; ?></td></tr>
                                 <tr><td>Deskripsi</td><td><?php echo $deskripsi; ?></td></tr>
+                                <tr><td>IPK</td><td><?php echo $ipk; ?></td></tr>
+                                <tr><td>Tahun Yudisium</td><td><?php echo $th_yudisium; ?></td></tr>
+                                <tr><td>SK Yudisium</td><td><?php echo $sk_yudisium; ?></td></tr>
                                 <tr><td></td><td><a href="<?php echo site_url('rekapitulasi'); ?>" class="btn btn-flat btn-default">Kembali</a></td></tr>
                             </table>
 						</div>
